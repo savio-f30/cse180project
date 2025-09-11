@@ -16,19 +16,8 @@ endif
 
 PLATFORM_ARG := --platform $(PLATFORM)
 
-# GPU detection - check if nvidia-docker or nvidia-container-runtime is available
-GPU_AVAILABLE := $(shell command -v nvidia-docker >/dev/null 2>&1 && echo "true" || (docker info 2>/dev/null | grep -q nvidia && echo "true" || echo "false"))
-
-# GPU flags - only set if GPU is available
-ifeq ($(GPU_AVAILABLE),true)
-    GPU_FLAGS := --gpus=all
-else
-    GPU_FLAGS :=
-endif
-
 shell:
-	CONTAINER_PS=$(shell docker ps -aq --filter ancestor=${IMAGE}) && \
-	docker exec -it $${CONTAINER_PS} bash
+	docker exec -it $(shell docker ps -aq --filter ancestor=${IMAGE}) bash
 
 build-image:
 	docker build -f Dockerfile . -t ${IMAGE} --target base
@@ -47,7 +36,6 @@ bash:
 	docker run -it --rm \
 	--net=host \
 	--privileged \
-	$(GPU_FLAGS) \
 	-v $(PWD)/../MRTP:/${WORKSPACE}/MRTP:Z \
 	-v $(HOME)/.ssh:/root/.ssh:ro \
 	${IMAGE} bash
