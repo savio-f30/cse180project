@@ -54,7 +54,6 @@ bash:
 	--net=host \
 	--privileged \
 	-v "$(CURRENT_DIR)/..":/${WORKSPACE}:Z \
-	-v "$(HOME_DIR)/.ssh":/root/.ssh:ro \
 	${IMAGE} bash
 
 clean:
