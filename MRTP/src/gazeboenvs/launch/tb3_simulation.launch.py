@@ -282,8 +282,9 @@ def generate_launch_description():
 
     ld.add_action(world_sdf_xacro)
     ld.add_action(remove_temp_sdf_file)
+    ld.add_action(wait_on_sdf)
     ld.add_action(gz_robot)
-    ld.add_action(gazebo_server)
+    # ld.add_action(gazebo_server)
     ld.add_action(gazebo_client)
 
     # Add the actions to launch all of the navigation nodes
