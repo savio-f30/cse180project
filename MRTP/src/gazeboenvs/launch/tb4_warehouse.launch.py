@@ -70,7 +70,7 @@ def generate_launch_description():
         'z': LaunchConfiguration('z_pose', default='0.01'),
         'R': LaunchConfiguration('roll', default='0.00'),
         'P': LaunchConfiguration('pitch', default='0.00'),
-        'Y': LaunchConfiguration('yaw', default='0.00'),  # Warehouse: 1.57
+        'Y': LaunchConfiguration('yaw', default='1.57'),  # Warehouse: 1.57
     }
     robot_name = LaunchConfiguration('robot_name')
     robot_sdf = LaunchConfiguration('robot_sdf')
@@ -107,7 +107,7 @@ def generate_launch_description():
     declare_params_file_cmd = DeclareLaunchArgument(
         'params_file',
         #default_value=os.path.join(bringup_dir, 'params', 'nav2_params.yaml'),
-        default_value = os.path.join(MRTP_dir,'params','nav2_params_tb4.yaml'),
+        default_value = os.path.join(MRTP_dir,'params','nav2_params_wh_tb4.yaml'),
         description='Full path to the ROS2 parameters file to use for all launched nodes',
     )
 
