@@ -27,99 +27,102 @@ If for some reason you can't install ROS2 on your machine (working with Windows 
 [See Docker README](docker/README.md).
 
 
-````markdown
-# Final Project Instructions
-
-## Team Rules
-- The final project may be completed individually or in teams of up to three students (no exceptions).
-- Team registration is available under the “Announcements” section.
-- If working individually, no registration is required. Any student not listed on a team will automatically be considered to be working alone.
-- All teams must register by **December 5**.
-
-## Presentations
-- Project presentations take place during the last week of classes.
-- **Individual projects:** Present during your assigned lab section.
-- **Team projects:** Present in any of the lab sections assigned to your team (no exceptions).
+# **Final Project Instructions**
 
 ---
 
-# Simulation Environment Setup
+## **Team Rules**
 
-First, ensure you have the **latest version of the MRTP repository**, as the final project files were just added.  
-After rebuilding the MRTP workspace, launch the simulation environment with:
+* The final project may be completed **individually** or in **teams of up to three students** (no exceptions).
+* Team registration is available under the **Announcements** section.
+* If working individually, **no registration is required**. Any student not listed on a team will automatically be considered to be working alone.
+* All teams must register by **December 5**.
 
-```bash
+---
+
+## **Presentations**
+
+* Project presentations take place during the **last week of classes**.
+* **Individual projects:** Present during your assigned lab section.
+* **Team projects:** Present in **any** of the lab sections assigned to your team (no exceptions).
+
+---
+
+# **Simulation Environment Setup**
+
+Make sure you have the **latest version of the MRTP repository**, as the final project files were recently added.
+After rebuilding the MRTP workspace, launch the simulation environment:
+
+```
 ros2 launch gazeboenvs tb4_warehouse.launch.py
-````
+```
 
-To run both Gazebo and RViz (useful for debugging):
+To run both **Gazebo and RViz** (useful for debugging):
 
-```bash
+```
 ros2 launch gazeboenvs tb4_warehouse.launch.py use_rviz:=true
 ```
 
-### Initial Robot Pose
+### **Initial Robot Pose**
 
-The robot starts in the environment with:
+* **x:** 2.12
+* **y:** -21.3
+* **yaw:** 1.57 radians
 
-* **x = 2.12**
-* **y = -21.3**
-* **yaw = 1.57 radians**
-
-The localization algorithm is initialized with these values.
+The localization algorithm initializes with these values.
 
 ---
 
-# Environment Description
+# **Environment Description**
 
 The warehouse environment contains **two stationary human characters**.
-Their footprints are included in the map loaded into Gazebo and available to the robot via the `/map` topic.
+Their footprints are included in the map loaded into Gazebo and published on the **/map** topic.
 
-Your controller must determine:
+Your task is to write a controller that can:
 
-1. Whether the humans have moved to a different location.
-2. If they have moved, identify their new (permanently relocated) position.
+1. Determine **whether the humans have moved** to a different location.
+2. If they have moved, determine **their new permanent location**.
 
-   * Humans, if moved, remain at the new location and do not move further.
-
----
-
-# Project Requirements
-
-To solve this problem, you must:
-
-### 1. Navigation
-
-Use the navigation library provided in class to move the robot through the environment using the **Nav2 stack**.
-
-### 2. Map Retrieval
-
-Access the environment map through the `/map` topic.
-
-### 3. Environment Change Detection
-
-Use the robot’s **range finder** to detect changes (e.g., if humans have moved).
-
-### 4. Robot Localization
-
-Use the `/amcl_pose` topic to obtain the robot’s current location in the environment.
+   * If the humans move, they remain at the new location and do not move again.
 
 ---
 
-# Deliverables
+# **Project Requirements**
+
+To complete the project, you must:
+
+## **Navigation**
+
+Use the **navigation library** provided in class to move the robot using the **Nav2 stack**.
+
+## **Map Retrieval**
+
+Retrieve the environment map from the **/map** topic.
+
+## **Environment Change Detection**
+
+Use the robot’s **range finder** to detect changes in the environment (e.g., if the humans have moved).
+
+## **Robot Localization**
+
+Use the **amcl_pose** topic to obtain the robot’s current location.
+
+---
+
+# **Deliverables**
 
 1. **Zipped workspace**
 
    * Include all code in a self-contained ROS2 workspace.
-   * Upload to CatCourses.
+   * Upload to **CatCourses**.
 
-2. **One-page PDF description**
+2. **One-page PDF**
 
-   * Describe your solution approach.
-   * Upload to CatCourses.
+   * Describe your solution clearly and concisely.
+   * Upload to **CatCourses**.
 
-3. **Presentation and demo**
+3. **Live presentation and demo**
 
-   * Present during lab hours in the final week.
+   * Delivered during your assigned lab session in the final week.
 
 ---
