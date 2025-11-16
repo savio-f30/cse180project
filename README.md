@@ -123,6 +123,3 @@ Use the `/amcl_pose` topic to obtain the robot’s current location in the envir
    * Present during lab hours in the final week.
 
 ---
-
-```
-```
